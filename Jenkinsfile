@@ -24,5 +24,11 @@ pipeline {
       }
     }
 
+    stage('Report') {
+      steps {
+        echo 'Prepare report'
+      }
+    }
+
   }
 }
