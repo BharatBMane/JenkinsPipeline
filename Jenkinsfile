@@ -15,6 +15,12 @@ pipeline {
           }
         }
 
+        stage('Log File') {
+          steps {
+            writeFile(file: 'TestLog.txt', text: 'Check log file written')
+          }
+        }
+
       }
     }
 
@@ -25,9 +31,20 @@ pipeline {
     }
 
     stage('Report') {
-      steps {
-        input(message: 'Do you want report?', id: 'Ok')
-        echo 'Prepare report 123'
+      parallel {
+        stage('Report') {
+          steps {
+            input(message: 'Do you want report?', id: 'Ok')
+            echo 'Prepare report 123'
+          }
+        }
+
+        stage('Archive Artifact') {
+          steps {
+            archiveArtifacts 'TestLog.txt'
+          }
+        }
+
       }
     }
 
