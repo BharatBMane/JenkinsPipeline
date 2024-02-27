@@ -27,7 +27,7 @@ pipeline {
     stage('Report') {
       steps {
         input(message: 'Do you want report?', id: 'Ok')
-        echo 'Prepare report'
+        echo 'Prepare report 123'
       }
     }
 
