@@ -31,11 +31,14 @@ pipeline {
     }
 
     stage('Report') {
+      when{
+        branch 'main'
+      }
       parallel {
         stage('Report') {
           steps {
             input(message: 'Do you want report?', id: 'Ok')
-            echo 'Prepare report 123'
+            echo 'Prepare report'
           }
         }
 
